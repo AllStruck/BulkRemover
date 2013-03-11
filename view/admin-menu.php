@@ -25,7 +25,7 @@ function bulk_remover_menu_page_output() {
 	 
 	 <h1>Bulk Remover</h1>
 	 
-	 <h3>Select the types which you wish to delete <em><b>all</b></em> posts from.</h3>
+	 <h3>Select the types which you wish to delete <strong>all</strong> posts from.</h3>
 	 
 	 
 	 <form action="/wp-admin/tools.php?page=bulk-remover" method="post">
@@ -55,7 +55,7 @@ ECHOS;
 				'post_status' => array('publish', 'draft', 'trash')));
 				foreach ($postsObject as $postObject) { 
 					setup_postdata($postObject);
-					wp_delete_post($postObject->ID, true);
+					wp_delete_post($postObject->ID, true); // Force complete delete.
 					echo '<p>Deleted ID: ' . $postObject->ID . ' Title: ' . $postObject->post_title . '</p>';
 				}
 				echo '<p style="color:red;">Posts in type ' . $post_type . ' deleted.</p>';
