@@ -48,11 +48,13 @@ ECHOS;
 
 		// Delete the posts:
 		foreach ($post_types as $post_type) { 
+			global $post;
 			if (isset($_POST[$post_type]) && $_POST[$post_type] == $post_type) {
 				$postsObject = get_posts(array(
 				'post_type' => $post_type, 'numberposts' => 9999,
 				'post_status' => array('publish', 'draft', 'trash')));
-				foreach ($postsObject as $postObject) { setup_postdata($postObject);
+				foreach ($postsObject as $postObject) { 
+					setup_postdata($postObject);
 					wp_delete_post($postObject->ID, true);
 					echo '<p>Deleted ID: ' . $postObject->ID . ' Title: ' . $postObject->post_title . '</p>';
 				}
