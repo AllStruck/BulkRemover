@@ -18,6 +18,3 @@ $bulkRemoverRootDir = plugin_dir_path(__FILE__);
 $bulkRemoverRootURI = plugin_dir_url(__FILE__);
 
 require_once($bulkRemoverRootDir . '/controller/init.php');
-
-
-?>

@@ -14,6 +14,7 @@ function bulk_remover_menu_page_output() {
 
 	if (!$_POST['Delete']) {
 	 
+	 // Show options for post types that can be deleted:
 	 foreach ($post_types as $post_type) {
 	 	$posts_count = wp_count_posts($post_type);
 	 	$total_count = $posts_count->trash + $posts_count->publish + $posts_count->draft;
@@ -44,8 +45,10 @@ ECHO;
 		echo <<<ECHOS
 		<h3>Sorry for the wait, here's what happened…</h3>
 ECHOS;
+
+		// Delete the posts:
 		foreach ($post_types as $post_type) { 
-			if ($_POST[$post_type] == $post_type) {
+			if (isset($_POST[$post_type]) && $_POST[$post_type] == $post_type) {
 				$postsObject = get_posts(array(
 				'post_type' => $post_type, 'numberposts' => 9999,
 				'post_status' => array('publish', 'draft', 'trash')));
@@ -60,5 +63,3 @@ ECHOS;
 	}
 
 }
-
-?>
