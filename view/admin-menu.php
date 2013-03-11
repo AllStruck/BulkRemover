@@ -12,7 +12,7 @@ function bulk_remover_menu_page_output() {
 	 $post_types_input_selection = "";
 	 $post_types = get_post_types();
 
-	if (!$_POST['Delete']) {
+	if (!isset($_POST['Delete'])) {
 	 
 	 // Show options for post types that can be deleted:
 	 foreach ($post_types as $post_type) {
