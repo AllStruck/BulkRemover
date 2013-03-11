@@ -25,7 +25,7 @@ function bulk_remover_menu_page_output() {
 	 
 	 <h1>Bulk Remover</h1>
 	 
-	 <h3>Select the types which you wish to delete <b>all</b> posts from.</h3>
+	 <h3>Select the types which you wish to delete <em><b>all</b></em> posts from.</h3>
 	 
 	 
 	 <form action="/wp-admin/tools.php?page=bulk-remover" method="post">
