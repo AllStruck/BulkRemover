@@ -42,26 +42,26 @@ ECHO;
 
 	 
 	} else {
-		echo <<<ECHOS
+		echo <<<ECHO
 		<h3>Sorry for the wait, here's what happened…</h3>
-ECHOS;
+ECHO;
 
 		// Delete the posts:
-		foreach ($post_types as $post_type) { 
+		foreach ($post_types as $post_type) {
 			global $post;
 			if (isset($_POST[$post_type]) && $_POST[$post_type] == $post_type) {
 				$postsObject = get_posts(array(
-				'post_type' => $post_type, 'numberposts' => 9999,
-				'post_status' => array('publish', 'draft', 'trash')));
-				foreach ($postsObject as $postObject) { 
+					'post_type' => $post_type, 'numberposts' => 9999,
+					'post_status' => array('publish', 'draft', 'trash')));
+				foreach ($postsObject as $postObject) {
 					setup_postdata($postObject);
 					wp_delete_post($postObject->ID, true); // Force complete delete.
 					echo '<p>Deleted ID: ' . $postObject->ID . ' Title: ' . $postObject->post_title . '</p>';
 				}
 				echo '<p style="color:red;">Posts in type ' . $post_type . ' deleted.</p>';
+			} else {
+				echo '<p>$_POST[$post_type] not set or does not match $post_type</p>';
 			}
-		
 		}
 	}
-
 }
