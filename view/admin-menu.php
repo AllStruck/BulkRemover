@@ -10,18 +10,18 @@ function add_bulk_remover_menu() {
 }
 function bulk_remover_menu_page_output() {
 	 $post_types_input_selection = "";
-	 $post_types = get_post_types();
+	 $post_types = get_post_types(array('public'=> true));
 
 	if (!isset($_POST['Delete'])) {
 	 
-	 // Show options for post types that can be deleted:
-	 foreach ($post_types as $post_type) {
-	 	$posts_count = wp_count_posts($post_type);
-	 	$total_count = $posts_count->trash + $posts_count->publish + $posts_count->draft;
-	 	$post_types_input_selection .= '<input type="checkbox" name="' . $post_type . '" value="' . $post_type . '" /> <strong>' . $post_type . '</strong> <i>(Published: ' . $posts_count->publish . ', Draft: '. $posts_count->draft .', Trash: '. $posts_count->trash .'. Total: '. $total_count .')</i><br/>';
-	 }
-	 
-	 	 echo <<<ECHO
+		// Show options for post types that can be deleted:
+		foreach ($post_types as $post_type) {
+			$posts_count = wp_count_posts($post_type);
+			$total_count = $posts_count->trash + $posts_count->publish + $posts_count->draft;
+			$post_types_input_selection .= '<input type="checkbox" name="' . $post_type . '" value="' . $post_type . '" /> <strong>' . $post_type . '</strong> <i>(Published: ' . $posts_count->publish . ', Draft: '. $posts_count->draft .', Trash: '. $posts_count->trash .'. Total: '. $total_count .')</i><br/>';
+		}
+
+	 	echo <<<ECHO
 	 
 	 <h1>Bulk Remover</h1>
 	 
@@ -40,10 +40,9 @@ function bulk_remover_menu_page_output() {
 	 
 ECHO;
 
-	 
 	} else {
 		echo <<<ECHO
-		<h3>Sorry for the wait, here's what happened…</h3>
+		<h3>Sorry for the wait, here's what happened:</h3>
 ECHO;
 
 		// Delete the posts:
