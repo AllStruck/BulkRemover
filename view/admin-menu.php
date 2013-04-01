@@ -50,7 +50,7 @@ ECHO;
 			global $post;
 			if (isset($_POST[$post_type]) && $_POST[$post_type] == $post_type) {
 				$postsObject = get_posts(array(
-					'post_type' => $post_type, 'numberposts' => 9999,
+					'post_type' => $post_type, 'numberposts' => 5000,
 					'post_status' => array('publish', 'draft', 'trash')));
 				foreach ($postsObject as $postObject) {
 					setup_postdata($postObject);
