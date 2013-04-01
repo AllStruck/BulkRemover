@@ -59,7 +59,11 @@ ECHO;
 				}
 				echo '<p style="color:red;">Posts in type ' . $post_type . ' deleted.</p>';
 			} else {
-				echo '<p>$_POST[$post_type] not set or does not match $post_type</p>';
+				if ( isset($_POST[$post_type]) ) {
+					echo '<p>$_POST[$post_type] = ' . $_POST[$post_type] . '.</p>';
+				} else {
+					echo '<p>$_POST[$post_type] not set.</p>';
+				}
 			}
 		}
 	}
